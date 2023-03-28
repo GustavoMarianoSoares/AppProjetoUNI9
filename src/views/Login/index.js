@@ -19,8 +19,8 @@ export function Login({ navigation }) {
 
   function handleForgotPassword() {
     auth().sendPasswordResetEmail(email)
-    .then(() => Alert.alert("Redefinir senha", "Enviamos um e-mail para você"))
-    .catch((error) => console.log(error))
+      .then(() => Alert.alert("Redefinir senha", "Enviamos um e-mail para você"))
+      .catch((error) => console.log(error))
   }
 
   return (

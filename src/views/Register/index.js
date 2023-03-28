@@ -9,9 +9,9 @@ export function Register() {
 
   function handleNewAccount() {
     auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => Alert.alert('Cadastrado', 'Usuário cadastrado com sucesso'))
-    .catch((error) => console.log(error))
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => Alert.alert('Cadastrado', 'Usuário cadastrado com sucesso'))
+      .catch((error) => console.log(error))
   }
 
   return (
