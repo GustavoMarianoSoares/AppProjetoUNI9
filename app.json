@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "AppProjetoUni9",
+    "slug": "AppProjetoUni9",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
