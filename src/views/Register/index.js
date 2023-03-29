@@ -1,6 +1,8 @@
 import { View, TextInput, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
 
+import { InputTexts } from "../../components/InputTexts"
+
 import auth from '@react-native-firebase/auth'
 
 export function Register() {
@@ -16,14 +18,21 @@ export function Register() {
 
   return (
     <View>
-      <TextInput
+      <InputTexts
         placeholder='E-mail'
         onChangeText={setEmail}
+        keyboardType='email-address'
       />
 
-      <TextInput
+      <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
+        secureTextEntry={true}
+      />
+
+      <InputTexts
+        placeholder='Confirmar senha'
+        secureTextEntry={true}
       />
 
       <Button

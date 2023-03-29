@@ -1,11 +1,15 @@
-import { View, TextInput, Button, Alert } from 'react-native'
+import { View, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
+
+import { InputTexts } from "../../components/InputTexts"
 
 import auth from '@react-native-firebase/auth'
 
 export function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const [isPasswordSecure, setIsPasswordSecure] = useState(true)
 
   function openScreenRegister() {
     navigation.navigate('Register')
@@ -23,16 +27,27 @@ export function Login({ navigation }) {
       .catch((error) => console.log(error))
   }
 
+  function showPassword() {
+    { isPasswordSecure ? setIsPasswordSecure(false) : setIsPasswordSecure(true) }
+  }
+
   return (
     <View>
-      <TextInput
+      <InputTexts
         placeholder='E-mail'
         onChangeText={setEmail}
+        keyboardType='email-address'
       />
 
-      <TextInput
+      <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
+        secureTextEntry={isPasswordSecure}
+      />
+
+      <Button
+        title='Mostrar senha'
+        onPress={showPassword}
       />
 
       <Button

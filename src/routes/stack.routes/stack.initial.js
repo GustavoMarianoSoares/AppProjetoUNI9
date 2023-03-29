@@ -11,6 +11,9 @@ export function StackInitial() {
             <Screen
                 name="Login"
                 component={Login}
+                options={{
+                    headerShown: false
+                }}
             />
 
             <Screen
