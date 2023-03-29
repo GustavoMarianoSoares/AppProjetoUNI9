@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
 
-export function Home() {
+export function Home({ navigation }) {
   const [patrimony, setPatrimony] = useState('')
   const [owner, setOwner] = useState('')
   const [component, setComponent] = useState('')
@@ -42,6 +42,10 @@ export function Home() {
       .catch((error) => console.log(error))
   }
 
+  function openEditOrder(item) {
+    navigation.navigate('EditOrder', {item: item})
+  }
+
   useEffect(() => {
     const subscriber = firestore()
       .collection('orders')
@@ -73,6 +77,10 @@ export function Home() {
             <Button
               title='Deletar'
               onPress={() => handleDelete(item.key)}
+            />
+            <Button
+              title='Editar Pedido'
+              onPress={() => openEditOrder(item)}
             />
           </View>
         )}

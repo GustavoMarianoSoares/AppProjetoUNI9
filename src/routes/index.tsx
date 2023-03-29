@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from "@react-navigation/native";
 
-import { Home } from "../views/Home"
+import { StackHome } from "./stack.routes/stack.home"
 
-import { StackRoutes } from "./stack.routes";
+import { StackInitial } from "./stack.routes/stack.initial";
 
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth"
 
@@ -19,7 +19,7 @@ export function Routes() {
     return (
 
         <NavigationContainer>
-            {user ? <Home /> : <StackRoutes />}
+            {user ? <StackHome /> : <StackInitial />}
         </NavigationContainer>
     )
 }

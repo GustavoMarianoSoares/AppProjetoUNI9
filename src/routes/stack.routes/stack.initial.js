@@ -2,10 +2,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
-import { Login } from "../views/Login"
-import { Register } from "../views/Register"
+import { Login } from "../../views/Login"
+import { Register } from "../../views/Register"
 
-export function StackRoutes() {
+export function StackInitial() {
     return (
         <Navigator>
             <Screen
