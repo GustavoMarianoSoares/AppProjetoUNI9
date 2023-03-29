@@ -32,18 +32,29 @@ export function Home({ navigation }) {
   }
 
   function handleDelete(id) {
-    firestore()
-      .collection('orders')
-      .doc(id)
-      .delete()
-      .then(() => {
-        Alert.alert('Deletado', 'Pedido deletado')
-      })
-      .catch((error) => console.log(error))
+    Alert.alert('', 'Tem certeza que deseja deletar este pedido?', [
+      {
+        text: 'Cancelar',
+      },
+      {
+        text: 'Ok',
+        onPress: () =>
+          firestore()
+            .collection('orders')
+            .doc(id)
+            .delete()
+            .then(() => {
+              Alert.alert('Deletado', 'Pedido deletado com sucesso')
+            })
+      },
+    ]);
+
   }
 
+
+
   function openEditOrder(item) {
-    navigation.navigate('EditOrder', {item: item})
+    navigation.navigate('EditOrder', { item: item })
   }
 
   useEffect(() => {
