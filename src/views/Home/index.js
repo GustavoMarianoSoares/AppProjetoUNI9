@@ -31,6 +31,17 @@ export function Home() {
       .catch((error) => console.log(error))
   }
 
+  function handleDelete(id) {
+    firestore()
+      .collection('orders')
+      .doc(id)
+      .delete()
+      .then(() => {
+        Alert.alert('Deletado', 'Pedido deletado')
+      })
+      .catch((error) => console.log(error))
+  }
+
   useEffect(() => {
     const subscriber = firestore()
       .collection('orders')
@@ -59,6 +70,10 @@ export function Home() {
             <Text>{item.description}</Text>
             <Text>{item.component}</Text>
             <Text>{item.status}</Text>
+            <Button
+              title='Deletar'
+              onPress={() => handleDelete(item.key)}
+            />
           </View>
         )}
       />
