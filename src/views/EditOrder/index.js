@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import firestore from '@react-native-firebase/firestore';
 
-export function EditOrder({navigation, route }) {
+export function EditOrder({ navigation, route }) {
   const infos = route.params.item
 
   const [patrimony, setPatrimony] = useState(infos.patrimony)
@@ -18,7 +18,7 @@ export function EditOrder({navigation, route }) {
       .set({
         patrimony: patrimony,
         owner: owner,
-        component: component, 
+        component: component,
         description: description,
         status: 'open',
         created_at: firestore.FieldValue.serverTimestamp()

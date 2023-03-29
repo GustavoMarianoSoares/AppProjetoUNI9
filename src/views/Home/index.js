@@ -51,8 +51,6 @@ export function Home({ navigation }) {
 
   }
 
-
-
   function openEditOrder(item) {
     navigation.navigate('EditOrder', { item: item })
   }
