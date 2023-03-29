@@ -1,7 +1,8 @@
-import { View, TextInput, Button, Alert } from 'react-native'
+import { View, Alert } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
+import { ButtonAction } from "../../components/ButtonAction"
 
 import auth from '@react-native-firebase/auth'
 
@@ -35,8 +36,8 @@ export function Register() {
         secureTextEntry={true}
       />
 
-      <Button
-        title='Cadastrar'
+      <ButtonAction
+        title='CADASTRAR'
         onPress={handleNewAccount}
       />
     </View>

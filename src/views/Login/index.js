@@ -1,15 +1,16 @@
-import { View, Button, Alert } from 'react-native'
+import { View, Alert, TouchableOpacity, Text } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
+import { ButtonAction } from "../../components/ButtonAction"
+
+import styles from './styles'
 
 import auth from '@react-native-firebase/auth'
 
 export function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const [isPasswordSecure, setIsPasswordSecure] = useState(true)
 
   function openScreenRegister() {
     navigation.navigate('Register')
@@ -25,12 +26,8 @@ export function Login({ navigation }) {
       .catch((error) => console.log(error))
   }
 
-  function showPassword() {
-    { isPasswordSecure ? setIsPasswordSecure(false) : setIsPasswordSecure(true) }
-  }
-
   return (
-    <View>
+    <View style={{ marginTop: 50 }}>
       <InputTexts
         placeholder='E-mail'
         onChangeText={setEmail}
@@ -40,28 +37,27 @@ export function Login({ navigation }) {
       <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
-        secureTextEntry={isPasswordSecure}
+        secureTextEntry={true}
       />
 
-      <Button
-        title='Mostrar senha'
-        onPress={showPassword}
-      />
+      <TouchableOpacity
+        style={styles.forgotPasswordTouchable}
+        onPress={openScreenForgotPassword} >
+        <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+      </TouchableOpacity>
 
-      <Button
-        title='Entrar'
+      <ButtonAction
+        title='ENTRAR'
         onPress={handleSignIn}
       />
 
-      <Button
-        title='Esqueci a senha'
-        onPress={openScreenForgotPassword}
-      />
-
-      <Button
-        title='Ir para cadastro'
-        onPress={openScreenRegister}
-      />
+      <TouchableOpacity
+        style={styles.doesNotHaveAccountTouchable}
+        onPress={openScreenRegister}>
+        <Text style={styles.doesNotHaveAccountText}>
+          Ainda não possui uma conta? <Text style={{ color: '#5D9ED4' }}>Registre-se</Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }

@@ -1,7 +1,8 @@
-import { View, Button, Alert } from 'react-native'
+import { View, Alert } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
+import { ButtonAction } from "../../components/ButtonAction"
 
 import auth from '@react-native-firebase/auth'
 
@@ -16,6 +17,7 @@ export function ForgotPassword({ navigation }) {
             })
             .catch((error) => console.log(error))
     }
+
     return (
         <View>
             <InputTexts
@@ -24,8 +26,8 @@ export function ForgotPassword({ navigation }) {
                 keyboardType='email-address'
             />
 
-            <Button
-                title='Esqueci a senha'
+            <ButtonAction
+                title='ENVIAR E-MAIL'
                 onPress={handleForgotPassword}
             />
         </View>

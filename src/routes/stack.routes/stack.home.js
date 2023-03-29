@@ -11,11 +11,15 @@ export function StackHome() {
             <Screen
                 name="Home"
                 component={Home}
+                options={{
+                    headerShown: false
+                }}
             />
 
             <Screen
                 name="EditOrder"
                 component={EditOrder}
+                options={{ title: 'EDITAR PEDIDO' }}
             />
         </Navigator>
     )

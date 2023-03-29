@@ -1,10 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
-import { TextInput } from 'react-native'
+import { View, TextInput } from 'react-native'
 
 import styles from './styles'
 
-export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboardType }) {
+export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboardType, value }) {
     return (
         <View>
             <TextInput
@@ -15,6 +14,7 @@ export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboar
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
                 autoCorrect={false}
+                value={value}
             />
         </View>
     )

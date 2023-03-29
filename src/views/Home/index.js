@@ -1,8 +1,12 @@
-import { View, Text, Button, TextInput, Alert, FlatList } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
+
+import { ButtonAction } from "../../components/ButtonAction"
+import { InputTexts } from "../../components/InputTexts"
 
 import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
+import { ScrollView } from 'react-native'
 
 export function Home({ navigation }) {
   const [patrimony, setPatrimony] = useState('')
@@ -73,57 +77,56 @@ export function Home({ navigation }) {
   }, []);
 
   return (
-    <View>
-      <FlatList
-        data={orders}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.patrimony}</Text>
-            <Text>{item.owner}</Text>
-            <Text>{item.description}</Text>
-            <Text>{item.component}</Text>
-            <Text>{item.status}</Text>
-            <Button
-              title='Deletar'
+    <ScrollView style={{ marginTop: 50 }}>
+      {
+        orders.map((item) =>
+          <View key={item.key}>
+            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.patrimony}</Text>
+            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.owner}</Text>
+            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.description}</Text>
+            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.component}</Text>
+            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.status}</Text>
+            <ButtonAction
+              title='DELETAR'
               onPress={() => handleDelete(item.key)}
             />
-            <Button
-              title='Editar Pedido'
+            <ButtonAction
+              title='EDITAR PEDIDO'
               onPress={() => openEditOrder(item)}
             />
           </View>
-        )}
-      />
+        )
+      }
 
-      <TextInput
+      <InputTexts
         placeholder='Número do patrimonio'
         onChangeText={setPatrimony}
       />
 
-      <TextInput
+      <InputTexts
         placeholder='Nome do Dono(a)'
         onChangeText={setOwner}
       />
 
-      <TextInput
+      <InputTexts
         placeholder='Componente'
         onChangeText={setComponent}
       />
 
-      <TextInput
+      <InputTexts
         placeholder='Descrição'
         onChangeText={setDescription}
       />
 
-      <Button
-        title='Enviar chamado'
+      <ButtonAction
+        title='ENVIAR CHAMADO'
         onPress={handleNewOrder}
       />
 
-      <Button
-        title='Logout'
+      <ButtonAction
+        title='LOGOUT'
         onPress={handleSignOut}
       />
-    </View>
+    </ScrollView>
   )
 }

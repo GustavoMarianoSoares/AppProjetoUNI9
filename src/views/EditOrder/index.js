@@ -1,5 +1,8 @@
-import { View, TextInput, Button, Alert } from 'react-native'
+import { View, Alert } from 'react-native'
 import React, { useState } from 'react'
+
+import { ButtonAction } from "../../components/ButtonAction"
+import { InputTexts } from "../../components/InputTexts"
 
 import firestore from '@react-native-firebase/firestore';
 
@@ -31,28 +34,28 @@ export function EditOrder({ navigation, route }) {
 
   return (
     <View>
-      <TextInput
+      <InputTexts
         value={patrimony}
         onChangeText={setPatrimony}
       />
 
-      <TextInput
+      <InputTexts
         value={owner}
         onChangeText={setOwner}
       />
 
-      <TextInput
+      <InputTexts
         value={component}
         onChangeText={setComponent}
       />
 
-      <TextInput
+      <InputTexts
         value={description}
         onChangeText={setDescription}
       />
 
-      <Button
-        title='Editar chamado'
+      <ButtonAction
+        title='EDITAR CHAMADO'
         onPress={handleEditOrder}
       />
     </View>

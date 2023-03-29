@@ -20,11 +20,13 @@ export function StackInitial() {
             <Screen
                 name="Register"
                 component={Register}
+                options={{ title: 'REGISTRE-SE' }}
             />
 
             <Screen
                 name="ForgotPassword"
                 component={ForgotPassword}
+                options={{ title: 'ESQUECI A SENHA' }}
             />
         </Navigator>
     )
