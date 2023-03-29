@@ -15,15 +15,13 @@ export function Login({ navigation }) {
     navigation.navigate('Register')
   }
 
+  function openScreenForgotPassword() {
+    navigation.navigate('ForgotPassword')
+  }
+
   function handleSignIn() {
     auth().signInWithEmailAndPassword(email, password)
       .then(() => Alert.alert('Entrou', 'Usuário logado com sucesso'))
-      .catch((error) => console.log(error))
-  }
-
-  function handleForgotPassword() {
-    auth().sendPasswordResetEmail(email)
-      .then(() => Alert.alert("Redefinir senha", "Enviamos um e-mail para você"))
       .catch((error) => console.log(error))
   }
 
@@ -57,7 +55,7 @@ export function Login({ navigation }) {
 
       <Button
         title='Esqueci a senha'
-        onPress={handleForgotPassword}
+        onPress={openScreenForgotPassword}
       />
 
       <Button
