@@ -22,28 +22,28 @@ export function Login({ navigation }) {
 
   function signInValidation(error) {
     if (error === 'auth/wrong-password') {
-      Alert.alert('Senha', 'Senha errada')
+      Alert.alert('SENHA', 'Senha errada, tente novamente ou clique em esqueci a senha para redefini-la.')
     }
 
     if (error === 'auth/user-not-found') {
-      Alert.alert('E-mail', 'Email errado')
+      Alert.alert('E-MAIL', 'E-mail não encontrado, verifique se está correto e tente novamente.')
     }
 
     if (error === 'auth/too-many-requests') {
-      Alert.alert('Muitas tentativas', 'Muitas tentativas, tente novamente mais tarde')
+      Alert.alert('MUITAS TENTATIVAS', 'Foram registradas muitas tentativas ao entrar nesta conta, tente novamente mais tarde.')
     }
 
     if (error === 'auth/invalid-email') {
-      Alert.alert('Email mal feito', 'Email mal informado faz direito ai')
+      Alert.alert('EMAIL MAL INFORMADO', 'Email mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
     }
   }
 
   function handleSignIn() {
     if (email == "" || password == "") {
-      Alert.alert('Preencha', 'Preencha os inputs')
+      Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para entrar no sistema informe todos os campos acima.')
     } else {
       auth().signInWithEmailAndPassword(email, password)
-        .then(() => Alert.alert('Entrou', 'Usuário logado com sucesso'))
+        .then(() => Alert.alert('ENTROU', 'Usuário entrou no sistema com sucesso.'))
         .catch(error => {
           signInValidation(error.code)
         })

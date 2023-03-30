@@ -12,24 +12,23 @@ export function Register() {
 
   function registerValidation(error) {
     if (error === 'auth/invalid-email') {
-      Alert.alert('Email mal feito', 'Email mal informado faz direito ai')
+      Alert.alert('EMAIL MAL INFORMADO', 'Email mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
     }
 
-    if(error === 'auth/weak-password'){
-      Alert.alert('Senha fraca', 'Crie uma senha com pelo menos 6 caracteres')
+    if (error === 'auth/weak-password') {
+      Alert.alert('SENHA FRACA', 'Crie uma senha com pelo menos 6 caracteres para se cadastrar.')
     }
   }
 
   function handleNewAccount() {
     if (email == "" || password == "") {
-      Alert.alert("Preencha tudo", "Preencha os inputs")
+      Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
     } else {
       auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => Alert.alert('Cadastrado', 'Usuário cadastrado com sucesso'))
+        .then(() => Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso.'))
         .catch(error => {
           registerValidation(error.code)
-          console.log(error);
         })
     }
   }

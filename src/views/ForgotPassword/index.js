@@ -11,26 +11,25 @@ export function ForgotPassword({ navigation }) {
 
     function forgotPasswordValidation(error) {
         if (error === 'auth/invalid-email') {
-            Alert.alert('Email invalido', 'Email invalido')
+            Alert.alert('EMAIL MAL INFORMADO', 'Email mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
         }
 
         if (error === 'auth/user-not-found') {
-            Alert.alert('E-mail', 'Email errado')
+            Alert.alert('E-MAIL', 'E-mail não encontrado, verifique se está correto e tente novamente.')
         }
     }
 
     function handleForgotPassword() {
         if (email == "") {
-            Alert.alert('Preencha email', 'Preencha o email ai')
+            Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
         } else {
             auth().sendPasswordResetEmail(email)
                 .then(() => {
-                    Alert.alert("Redefinir senha", "Enviamos um e-mail para você redefinir sua senha")
+                    Alert.alert("REDEFINIR SENHA", "Enviamos um e-mail para você, para redefinir sua senha.")
                     navigation.goBack()
                 })
                 .catch(error => {
                     forgotPasswordValidation(error.code)
-                    console.log(error);
                 })
         }
     }
