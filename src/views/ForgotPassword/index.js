@@ -8,10 +8,11 @@ import auth from '@react-native-firebase/auth'
 
 export function ForgotPassword({ navigation }) {
     const [email, setEmail] = useState('')
+    const [confirmEmail, setConfirmEmail] = useState('')
 
     function forgotPasswordValidation(error) {
         if (error === 'auth/invalid-email') {
-            Alert.alert('EMAIL MAL INFORMADO', 'Email mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
+            Alert.alert('E-MAIL MAL INFORMADO', 'E-mail mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
         }
 
         if (error === 'auth/user-not-found') {
@@ -20,8 +21,10 @@ export function ForgotPassword({ navigation }) {
     }
 
     function handleForgotPassword() {
-        if (email == "") {
+        if (email == "" || confirmEmail == "") {
             Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
+        } else if (confirmEmail != email) {
+            Alert.alert('E-MAILS DIFERENTES', 'Os e-mails digitados não correspondem, verifique e tente novamente.')
         } else {
             auth().sendPasswordResetEmail(email)
                 .then(() => {
@@ -39,6 +42,12 @@ export function ForgotPassword({ navigation }) {
             <InputTexts
                 placeholder='E-mail'
                 onChangeText={setEmail}
+                keyboardType='email-address'
+            />
+
+            <InputTexts
+                placeholder='Confirmar e-mail'
+                onChangeText={setConfirmEmail}
                 keyboardType='email-address'
             />
 

@@ -26,7 +26,7 @@ export function Login({ navigation }) {
     }
 
     if (error === 'auth/user-not-found') {
-      Alert.alert('E-MAIL', 'E-mail não encontrado, verifique se está correto e tente novamente.')
+      Alert.alert('E-MAIL', 'E-mail não encontrado, verifique se o e-mail está correto e tente novamente.')
     }
 
     if (error === 'auth/too-many-requests') {
@@ -34,7 +34,7 @@ export function Login({ navigation }) {
     }
 
     if (error === 'auth/invalid-email') {
-      Alert.alert('EMAIL MAL INFORMADO', 'Email mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
+      Alert.alert('E-MAIL MAL INFORMADO', 'E-mail mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
     }
   }
 
