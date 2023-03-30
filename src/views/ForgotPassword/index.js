@@ -9,13 +9,30 @@ import auth from '@react-native-firebase/auth'
 export function ForgotPassword({ navigation }) {
     const [email, setEmail] = useState('')
 
+    function forgotPasswordValidation(error) {
+        if (error === 'auth/invalid-email') {
+            Alert.alert('Email invalido', 'Email invalido')
+        }
+
+        if (error === 'auth/user-not-found') {
+            Alert.alert('E-mail', 'Email errado')
+        }
+    }
+
     function handleForgotPassword() {
-        auth().sendPasswordResetEmail(email)
-            .then(() => {
-                Alert.alert("Redefinir senha", "Enviamos um e-mail para você redefinir sua senha")
-                navigation.goBack()
-            })
-            .catch((error) => console.log(error))
+        if (email == "") {
+            Alert.alert('Preencha email', 'Preencha o email ai')
+        } else {
+            auth().sendPasswordResetEmail(email)
+                .then(() => {
+                    Alert.alert("Redefinir senha", "Enviamos um e-mail para você redefinir sua senha")
+                    navigation.goBack()
+                })
+                .catch(error => {
+                    forgotPasswordValidation(error.code)
+                    console.log(error);
+                })
+        }
     }
 
     return (

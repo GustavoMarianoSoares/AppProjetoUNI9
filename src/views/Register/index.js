@@ -10,11 +10,28 @@ export function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  function registerValidation(error) {
+    if (error === 'auth/invalid-email') {
+      Alert.alert('Email mal feito', 'Email mal informado faz direito ai')
+    }
+
+    if(error === 'auth/weak-password'){
+      Alert.alert('Senha fraca', 'Crie uma senha com pelo menos 6 caracteres')
+    }
+  }
+
   function handleNewAccount() {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => Alert.alert('Cadastrado', 'Usuário cadastrado com sucesso'))
-      .catch((error) => console.log(error))
+    if (email == "" || password == "") {
+      Alert.alert("Preencha tudo", "Preencha os inputs")
+    } else {
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => Alert.alert('Cadastrado', 'Usuário cadastrado com sucesso'))
+        .catch(error => {
+          registerValidation(error.code)
+          console.log(error);
+        })
+    }
   }
 
   return (
@@ -28,11 +45,6 @@ export function Register() {
       <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-
-      <InputTexts
-        placeholder='Confirmar senha'
         secureTextEntry={true}
       />
 

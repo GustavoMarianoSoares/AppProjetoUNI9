@@ -20,10 +20,34 @@ export function Login({ navigation }) {
     navigation.navigate('ForgotPassword')
   }
 
+  function signInValidation(error) {
+    if (error === 'auth/wrong-password') {
+      Alert.alert('Senha', 'Senha errada')
+    }
+
+    if (error === 'auth/user-not-found') {
+      Alert.alert('E-mail', 'Email errado')
+    }
+
+    if (error === 'auth/too-many-requests') {
+      Alert.alert('Muitas tentativas', 'Muitas tentativas, tente novamente mais tarde')
+    }
+
+    if (error === 'auth/invalid-email') {
+      Alert.alert('Email mal feito', 'Email mal informado faz direito ai')
+    }
+  }
+
   function handleSignIn() {
-    auth().signInWithEmailAndPassword(email, password)
-      .then(() => Alert.alert('Entrou', 'Usuário logado com sucesso'))
-      .catch((error) => console.log(error))
+    if (email == "" || password == "") {
+      Alert.alert('Preencha', 'Preencha os inputs')
+    } else {
+      auth().signInWithEmailAndPassword(email, password)
+        .then(() => Alert.alert('Entrou', 'Usuário logado com sucesso'))
+        .catch(error => {
+          signInValidation(error.code)
+        })
+    }
   }
 
   return (
