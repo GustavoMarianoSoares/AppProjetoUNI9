@@ -17,7 +17,17 @@ export function Home({ navigation }) {
 
 
   function handleSignOut() {
-    auth().signOut();
+    Alert.alert('', 'Tem certeza que deseja sair?', [
+      {
+        text: 'Cancelar',
+      },
+      {
+        text: 'Ok',
+        onPress: () =>
+          auth().signOut()
+      },
+    ]);
+
   }
 
   function handleNewOrder() {
