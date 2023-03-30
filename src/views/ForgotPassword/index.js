@@ -10,7 +10,7 @@ export function ForgotPassword({ navigation }) {
     const [email, setEmail] = useState('')
     const [confirmEmail, setConfirmEmail] = useState('')
 
-    function forgotPasswordValidation(error) {
+    function forgotPasswordValidationAuth(error) {
         if (error === 'auth/invalid-email') {
             Alert.alert('E-MAIL MAL INFORMADO', 'E-mail mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
         }
@@ -20,21 +20,25 @@ export function ForgotPassword({ navigation }) {
         }
     }
 
-    function handleForgotPassword() {
+    function forgotPasswordValidation() {
         if (email == "" || confirmEmail == "") {
             Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
         } else if (confirmEmail != email) {
             Alert.alert('E-MAILS DIFERENTES', 'Os e-mails digitados não correspondem, verifique e tente novamente.')
         } else {
-            auth().sendPasswordResetEmail(email)
-                .then(() => {
-                    Alert.alert("REDEFINIR SENHA", "Enviamos um e-mail para você, para redefinir sua senha.")
-                    navigation.goBack()
-                })
-                .catch(error => {
-                    forgotPasswordValidation(error.code)
-                })
+            handleForgotPassword()
         }
+    }
+
+    function handleForgotPassword() {
+        auth().sendPasswordResetEmail(email)
+            .then(() => {
+                Alert.alert("REDEFINIR SENHA", "Enviamos um e-mail para você, para redefinir sua senha.")
+                navigation.goBack()
+            })
+            .catch(error => {
+                forgotPasswordValidationAuth(error.code)
+            })
     }
 
     return (
@@ -53,7 +57,7 @@ export function ForgotPassword({ navigation }) {
 
             <ButtonAction
                 title='ENVIAR E-MAIL'
-                onPress={handleForgotPassword}
+                onPress={forgotPasswordValidation}
             />
         </View>
     )

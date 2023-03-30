@@ -20,7 +20,7 @@ export function Login({ navigation }) {
     navigation.navigate('ForgotPassword')
   }
 
-  function signInValidation(error) {
+  function signInValidationAuth(error) {
     if (error === 'auth/wrong-password') {
       Alert.alert('SENHA', 'Senha errada, tente novamente ou clique em esqueci a senha para redefini-la.')
     }
@@ -38,16 +38,20 @@ export function Login({ navigation }) {
     }
   }
 
-  function handleSignIn() {
+  function signInValidation() {
     if (email == "" || password == "") {
       Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para entrar no sistema informe todos os campos acima.')
     } else {
-      auth().signInWithEmailAndPassword(email, password)
-        .then(() => Alert.alert('ENTROU', 'Usuário entrou no sistema com sucesso.'))
-        .catch(error => {
-          signInValidation(error.code)
-        })
+      handleSignIn()
     }
+  }
+
+  function handleSignIn() {
+    auth().signInWithEmailAndPassword(email, password)
+      .then(() => Alert.alert('ENTROU', 'Usuário entrou no sistema com sucesso.'))
+      .catch(error => {
+        signInValidationAuth(error.code)
+      })
   }
 
   return (
@@ -72,7 +76,7 @@ export function Login({ navigation }) {
 
       <ButtonAction
         title='ENTRAR'
-        onPress={handleSignIn}
+        onPress={signInValidation}
       />
 
       <TouchableOpacity

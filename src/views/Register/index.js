@@ -11,7 +11,7 @@ export function Register() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  function registerValidation(error) {
+  function registerValidationAuth(error) {
     if (error === 'auth/invalid-email') {
       Alert.alert('E-MAIL MAL INFORMADO', 'E-mail mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
     }
@@ -25,19 +25,23 @@ export function Register() {
     }
   }
 
-  function handleNewAccount() {
+  function registerValidation() {
     if (email == "" || password == "" || confirmPassword == "") {
       Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
     } else if (confirmPassword != password) {
       Alert.alert('SENHAS DIFERENTES', 'As senhas digitadas não correspondem, verifique e tente novamente.')
     } else {
-      auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso.'))
-        .catch(error => {
-          registerValidation(error.code)
-        })
+      handleNewAccount()
     }
+  }
+
+  function handleNewAccount() {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso.'))
+      .catch(error => {
+        registerValidationAuth(error.code)
+      })
   }
 
   return (
@@ -62,7 +66,7 @@ export function Register() {
 
       <ButtonAction
         title='CADASTRAR'
-        onPress={handleNewAccount}
+        onPress={registerValidation}
       />
     </View>
   )
