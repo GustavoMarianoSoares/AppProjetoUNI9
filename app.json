@@ -5,6 +5,16 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
+    ],
+    "android": {
+      "googleServicesFile": "./firebase-config/google-services.json",
+      "package": "com.appprojetouni9"
+    },
+    "ios": {
+      "googleServicesFile": "./firebase-config/GoogleService-Info.plist"
+    },
+    "plugins": [
+      "@react-native-firebase/app"
     ]
   }
 }

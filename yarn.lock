@@ -1786,7 +1786,7 @@
 
 "@react-native-firebase/auth@^17.4.0":
   version "17.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-17.4.0.tgz#66369dcb2e6053a45f7e1c17f33de46ce02e4c22"
+  resolved "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-17.4.0.tgz"
   integrity sha512-Oh/qbqBec3V06npvSfEHB0istYmC4P+dg/droKXGwOGt/LD4x8F3d5SlGkroVAJZRZmKaRshjdaZdkzaC1wZQA==
   dependencies:
     "@expo/config-plugins" "^5.0.4"
@@ -1794,7 +1794,7 @@
 
 "@react-native-firebase/firestore@^17.4.0":
   version "17.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-17.4.0.tgz#2c9d4454b3fd2a7e67a75beab54f816b1b89f86c"
+  resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-17.4.0.tgz"
   integrity sha512-rFgf+j6NP5FOiWjzJtliuLQryxqWsCiLJ/aT8tWyFOBEqQtke+GQ9ofo4KPB0OdbziU11mFJgZjfcrErkRyU3g==
 
 "@react-native/assets@1.0.0":
@@ -1921,6 +1921,25 @@
   version "18.15.10"
   resolved "https://registry.npmjs.org/@types/node/-/node-18.15.10.tgz"
   integrity sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==
+
+"@types/prop-types@*":
+  version "15.7.5"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
+  integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
+
+"@types/react@~18.0.27":
+  version "18.0.31"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.31.tgz#a69ef8dd7bfa849734d258c793a8fe343a338205"
+  integrity sha512-EEG67of7DsvRDU6BLLI0p+k1GojDLz9+lZsnCpCRTa/lOokvyPBvp8S5x+A24hME3yyQuIipcP70KJ6H7Qupww==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/scheduler@*":
+  version "0.16.3"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.3.tgz#cef09e3ec9af1d63d2a6cc5b383a737e24e6dcf5"
+  integrity sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
@@ -2885,6 +2904,11 @@ crypto-random-string@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/crypto-random-string/-/crypto-random-string-2.0.0.tgz"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
+
+csstype@^3.0.2:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
+  integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
 dag-map@~1.0.0:
   version "1.0.2"
@@ -6751,6 +6775,11 @@ type-is@~1.6.18:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.24"
+
+typescript@^4.9.4:
+  version "4.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
+  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 ua-parser-js@^0.7.30:
   version "0.7.34"
