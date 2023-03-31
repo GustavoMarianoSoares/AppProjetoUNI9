@@ -38,7 +38,10 @@ export function Register() {
   function handleNewAccount() {
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso.'))
+      .then(() => {
+        auth().currentUser.sendEmailVerification()
+        Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso, enviamos um e-mail para que você verifique-o.')
+      })
       .catch(error => {
         registerValidationAuth(error.code)
       })
