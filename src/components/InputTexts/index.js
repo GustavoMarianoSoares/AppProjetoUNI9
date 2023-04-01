@@ -3,7 +3,7 @@ import { View, TextInput } from 'react-native'
 
 import styles from './styles'
 
-export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboardType, value }) {
+export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboardType, value, autoCapitalize }) {
     return (
         <View>
             <TextInput
@@ -15,6 +15,7 @@ export function InputTexts({ placeholder, onChangeText, secureTextEntry, keyboar
                 keyboardType={keyboardType}
                 autoCorrect={false}
                 value={value}
+                autoCapitalize={autoCapitalize}
             />
         </View>
     )

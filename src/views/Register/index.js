@@ -70,6 +70,7 @@ export function Register({ navigation }) {
         placeholder='E-mail'
         onChangeText={setEmail}
         keyboardType='email-address'
+        autoCapitalize='none'
       />
 
       <InputTexts
