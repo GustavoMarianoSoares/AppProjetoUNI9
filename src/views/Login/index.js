@@ -46,14 +46,19 @@ export function Login({ navigation }) {
     }
   }
 
+  function checkEmailVerified() {
+    if (auth().currentUser.emailVerified == false) {
+      auth().currentUser.sendEmailVerification()
+      Alert.alert("VERIFIQUE SEU E-MAIL", "Enviamos novamente um e-mail para você verifique o seu e-mail para poder entrar no aplicativo.")
+    } else {
+      Alert.alert("ENTROU", "Entrou no sistema com sucesso. 🌟")
+    }
+  }
+
   function handleSignIn() {
     auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        if (auth().currentUser.emailVerified == false) {
-          Alert.alert("VERIFIQUE SEU E-MAIL", "Verifique o seu e-mail para poder entrar no aplicativo.")
-        } else {
-          Alert.alert("ENTROU", "Entrou no sistema com sucesso.")
-        }
+        checkEmailVerified()
       })
       .catch(error => {
         signInValidationAuth(error.code)

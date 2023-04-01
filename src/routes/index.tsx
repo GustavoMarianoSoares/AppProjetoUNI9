@@ -17,15 +17,18 @@ export function Routes() {
         return subscriber
     })
 
+    const signIn =
+        user ?
+            user.emailVerified == true ?
+                <StackHome /> :
+                <StackInitial />
+            : <StackInitial />
+
     return (
         <NavigationContainer>
             <StatusBar />
             {
-                user ?
-                    user.emailVerified == true ?
-                        <StackHome /> :
-                        <StackInitial />
-                    : <StackInitial />
+                signIn
             }
         </NavigationContainer>
     )
