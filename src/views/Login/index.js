@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
+import Checkbox from 'expo-checkbox';
 
 import styles from './styles'
 
@@ -11,6 +12,7 @@ import auth from '@react-native-firebase/auth'
 export function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isChecked, setChecked] = useState(false)
 
   function openScreenRegister() {
     navigation.navigate('Register')
@@ -65,6 +67,14 @@ export function Login({ navigation }) {
       })
   }
 
+  function changePasswordSecure() {
+    if (isChecked) {
+      setChecked(false)
+    } else {
+      setChecked(true)
+    }
+  }
+
   return (
     <View style={{ marginTop: 50 }}>
       <InputTexts
@@ -76,14 +86,25 @@ export function Login({ navigation }) {
       <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
-        secureTextEntry={true}
+        secureTextEntry={!isChecked}
       />
+      <View style={styles.passwordsView}>
+        <TouchableOpacity style={styles.showPassword}
+          onPress={changePasswordSecure}>
+          <Checkbox
+            value={isChecked}
+            color={isChecked ? '#339FFF' : '#797979'}
+          />
 
-      <TouchableOpacity
-        style={styles.forgotPasswordTouchable}
-        onPress={openScreenForgotPassword} >
-        <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
-      </TouchableOpacity>
+          <Text style={styles.showPasswordText}>Mostrar senha</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.forgotPasswordTouchable}
+          onPress={openScreenForgotPassword} >
+          <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
+      </View>
 
       <ButtonAction
         title='ENTRAR'

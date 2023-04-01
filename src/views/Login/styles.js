@@ -2,12 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
     forgotPasswordTouchable: {
-        marginTop: 10,
-        marginLeft: 20,
         marginRight: 20,
         marginBottom: 10,
-        padding: 5,
-        alignSelf: 'flex-end'
     },
     forgotPasswordText: {
         color: '#ADADAD',
@@ -20,5 +16,20 @@ export default StyleSheet.create({
     doesNotHaveAccountText: {
         color: '#797979',
         fontSize: 16,
+    },
+    showPassword: {
+        flexDirection: 'row',
+        marginLeft: 20,
+    },
+    showPasswordText:{
+        marginLeft: 10,
+        color: '#ADADAD',
+        fontSize: 15,
+    },
+    passwordsView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        padding: 5
     }
 });

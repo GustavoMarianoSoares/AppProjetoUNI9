@@ -1,8 +1,11 @@
-import { View, Alert } from 'react-native'
+import { View, Alert, TouchableOpacity, Text } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
+import Checkbox from 'expo-checkbox';
+
+import styles from './styles'
 
 import auth from '@react-native-firebase/auth'
 
@@ -10,6 +13,7 @@ export function Register({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [isChecked, setChecked] = useState(false)
 
   function registerValidationAuth(error) {
     if (error === 'auth/invalid-email') {
@@ -48,6 +52,14 @@ export function Register({ navigation }) {
       })
   }
 
+  function changePasswordSecure() {
+    if (isChecked) {
+      setChecked(false)
+    } else {
+      setChecked(true)
+    }
+  }
+
   return (
     <View>
       <InputTexts
@@ -59,14 +71,24 @@ export function Register({ navigation }) {
       <InputTexts
         placeholder='Senha'
         onChangeText={setPassword}
-        secureTextEntry={true}
+        secureTextEntry={!isChecked}
       />
 
       <InputTexts
         placeholder='Confirmar senha'
         onChangeText={setConfirmPassword}
-        secureTextEntry={true}
+        secureTextEntry={!isChecked}
       />
+
+      <TouchableOpacity style={styles.showPassword}
+        onPress={changePasswordSecure}>
+        <Checkbox
+          value={isChecked}
+          color={isChecked ? '#339FFF' : '#797979'}
+        />
+
+        <Text style={styles.showPasswordText}>Mostrar senhas</Text>
+      </TouchableOpacity>
 
       <ButtonAction
         title='CADASTRAR'
