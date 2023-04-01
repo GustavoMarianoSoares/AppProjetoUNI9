@@ -38,6 +38,10 @@ export function Login({ navigation }) {
     if (error === 'auth/invalid-email') {
       Alert.alert('E-MAIL MAL INFORMADO', 'E-mail mal informado, verifique se o e-mail está correto e com todos os caracteres como: @, .com e etc...')
     }
+
+    if (error === 'auth/network-request-failed') {
+      Alert.alert('CONECTE-SE', 'Verifique se você está conectado a internet e tente novamente.')
+    }
   }
 
   function signInValidation() {

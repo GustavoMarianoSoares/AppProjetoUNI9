@@ -27,6 +27,10 @@ export function Register({ navigation }) {
     if (error === 'auth/email-already-in-use') {
       Alert.alert('E-MAIL JÁ CADASTRADO', 'Este endereço de e-mail já está cadastrado em outra conta.')
     }
+
+    if (error === 'auth/network-request-failed') {
+      Alert.alert('CONECTE-SE', 'Verifique se você está conectado a internet e tente novamente.')
+    }
   }
 
   function registerValidation() {
