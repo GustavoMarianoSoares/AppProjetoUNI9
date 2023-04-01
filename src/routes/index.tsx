@@ -12,7 +12,7 @@ export function Routes() {
     const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
     useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(setUser)
+        const subscriber = auth().onUserChanged(setUser)
 
         return subscriber
     })
@@ -20,7 +20,13 @@ export function Routes() {
     return (
         <NavigationContainer>
             <StatusBar />
-            {user ? <StackHome /> : <StackInitial />}
+            {
+                user ?
+                    user.emailVerified == true ?
+                        <StackHome /> :
+                        <StackInitial />
+                    : <StackInitial />
+            }
         </NavigationContainer>
     )
 }

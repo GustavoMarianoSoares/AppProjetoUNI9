@@ -6,7 +6,7 @@ import { ButtonAction } from "../../components/ButtonAction"
 
 import auth from '@react-native-firebase/auth'
 
-export function Register() {
+export function Register({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -41,6 +41,7 @@ export function Register() {
       .then(() => {
         auth().currentUser.sendEmailVerification()
         Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso, enviamos um e-mail para que você verifique-o.')
+        navigation.goBack()
       })
       .catch(error => {
         registerValidationAuth(error.code)

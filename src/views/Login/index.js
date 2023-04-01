@@ -48,7 +48,13 @@ export function Login({ navigation }) {
 
   function handleSignIn() {
     auth().signInWithEmailAndPassword(email, password)
-      .then(() => Alert.alert('ENTROU', 'Usuário entrou no sistema com sucesso.'))
+      .then(() => {
+        if (auth().currentUser.emailVerified == false) {
+          Alert.alert("VERIFIQUE SEU E-MAIL", "Verifique o seu e-mail para poder entrar no aplicativo.")
+        } else {
+          Alert.alert("ENTROU", "Entrou no sistema com sucesso.")
+        }
+      })
       .catch(error => {
         signInValidationAuth(error.code)
       })
