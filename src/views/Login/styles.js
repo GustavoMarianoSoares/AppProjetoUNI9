@@ -21,7 +21,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 20,
     },
-    showPasswordText:{
+    showPasswordText: {
         marginLeft: 10,
         color: '#ADADAD',
         fontSize: 15,
