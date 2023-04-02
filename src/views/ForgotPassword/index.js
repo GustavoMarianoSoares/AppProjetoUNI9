@@ -47,12 +47,14 @@ export function ForgotPassword({ navigation }) {
                 placeholder='E-mail'
                 onChangeText={setEmail}
                 keyboardType='email-address'
+                autoCapitalize='none'
             />
 
             <InputTexts
                 placeholder='Confirmar e-mail'
                 onChangeText={setConfirmEmail}
                 keyboardType='email-address'
+                autoCapitalize='none'
             />
 
             <ButtonAction

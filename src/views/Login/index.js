@@ -55,7 +55,12 @@ export function Login({ navigation }) {
   function checkEmailVerified() {
     if (auth().currentUser.emailVerified == false) {
       auth().currentUser.sendEmailVerification()
-      Alert.alert("VERIFIQUE SEU E-MAIL", "Enviamos novamente um e-mail para você verifique o seu e-mail para poder entrar no aplicativo.")
+        .then(() => {
+          Alert.alert("VERIFIQUE SEU E-MAIL", "Enviamos novamente um e-mail de verificação para que possa entrar no sistema.")
+        })
+        .catch(() => {
+          Alert.alert("AGUARDE", "Aguarde em até 1 minuto para que possamos reenviar o e-mail de verificação.")
+        })
     } else {
       Alert.alert("ENTROU", "Entrou no sistema com sucesso. 🌟")
     }

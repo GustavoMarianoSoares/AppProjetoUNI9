@@ -48,7 +48,7 @@ export function Register({ navigation }) {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         auth().currentUser.sendEmailVerification()
-        Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso, enviamos um e-mail para que você verifique-o.')
+        Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso, enviamos um e-mail para que você verifique-o somente assim poderá entrar no sistema.')
         navigation.goBack()
       })
       .catch(error => {
