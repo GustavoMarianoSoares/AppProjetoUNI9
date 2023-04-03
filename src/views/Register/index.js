@@ -1,5 +1,6 @@
-import { View, Alert, TouchableOpacity, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { Alert, TouchableOpacity, Text, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native'
 import React, { useState } from 'react'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
@@ -70,49 +71,51 @@ export function Register({ navigation }) {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View>
-        <ImageLogo />
+    <KeyboardAwareScrollView behavior="padding" style={{ flex: 1 }}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <ScrollView>
+          <ImageLogo />
 
-        <InputTexts
-          placeholder='Nome'
-          onChangeText={setName}
-        />
-
-        <InputTexts
-          placeholder='E-mail'
-          onChangeText={setEmail}
-          keyboardType='email-address'
-          autoCapitalize='none'
-        />
-
-        <InputTexts
-          placeholder='Senha'
-          onChangeText={setPassword}
-          secureTextEntry={!isChecked}
-        />
-
-        <InputTexts
-          placeholder='Confirmar senha'
-          onChangeText={setConfirmPassword}
-          secureTextEntry={!isChecked}
-        />
-
-        <TouchableOpacity style={styles.showPassword}
-          onPress={changePasswordSecure}>
-          <Checkbox
-            value={isChecked}
-            color={isChecked ? '#339FFF' : '#797979'}
+          <InputTexts
+            placeholder='Nome'
+            onChangeText={setName}
           />
 
-          <Text style={styles.showPasswordText}>Mostrar senhas</Text>
-        </TouchableOpacity>
+          <InputTexts
+            placeholder='E-mail'
+            onChangeText={setEmail}
+            keyboardType='email-address'
+            autoCapitalize='none'
+          />
 
-        <ButtonAction
-          title='CADASTRAR'
-          onPress={registerValidation}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+          <InputTexts
+            placeholder='Senha'
+            onChangeText={setPassword}
+            secureTextEntry={!isChecked}
+          />
+
+          <InputTexts
+            placeholder='Confirmar senha'
+            onChangeText={setConfirmPassword}
+            secureTextEntry={!isChecked}
+          />
+
+          <TouchableOpacity style={styles.showPassword}
+            onPress={changePasswordSecure}>
+            <Checkbox
+              value={isChecked}
+              color={isChecked ? '#339FFF' : '#797979'}
+            />
+
+            <Text style={styles.showPasswordText}>Mostrar senhas</Text>
+          </TouchableOpacity>
+
+          <ButtonAction
+            title='CADASTRAR'
+            onPress={registerValidation}
+          />
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   )
 }

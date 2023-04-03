@@ -1,5 +1,6 @@
-import { View, Alert, TouchableOpacity, Text, Image, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, ScrollView, Alert, TouchableOpacity, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
@@ -86,55 +87,57 @@ export function Login({ navigation }) {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={{ marginTop: 50 }}>
-        
-        <ImageLogo />
+    <KeyboardAwareScrollView behavior="padding" style={{ flex: 1 }}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <ScrollView style={{ marginTop: 50 }}>
 
-        <InputTexts
-          placeholder='E-mail'
-          onChangeText={setEmail}
-          keyboardType='email-address'
-          autoCapitalize='none'
-        />
+          <ImageLogo />
 
-        <InputTexts
-          placeholder='Senha'
-          onChangeText={setPassword}
-          secureTextEntry={!isChecked}
-        />
-        <View style={styles.passwordsView}>
-          <TouchableOpacity style={styles.showPassword}
-            onPress={changePasswordSecure}>
-            <Checkbox
-              onValueChange={changePasswordSecure}
-              value={isChecked}
-              color={isChecked ? '#339FFF' : '#797979'}
-            />
+          <InputTexts
+            placeholder='E-mail'
+            onChangeText={setEmail}
+            keyboardType='email-address'
+            autoCapitalize='none'
+          />
 
-            <Text style={styles.showPasswordText}>Mostrar senha</Text>
-          </TouchableOpacity>
+          <InputTexts
+            placeholder='Senha'
+            onChangeText={setPassword}
+            secureTextEntry={!isChecked}
+          />
+          <View style={styles.passwordsView}>
+            <TouchableOpacity style={styles.showPassword}
+              onPress={changePasswordSecure}>
+              <Checkbox
+                onValueChange={changePasswordSecure}
+                value={isChecked}
+                color={isChecked ? '#339FFF' : '#797979'}
+              />
+
+              <Text style={styles.showPasswordText}>Mostrar senha</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.forgotPasswordTouchable}
+              onPress={openScreenForgotPassword} >
+              <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+            </TouchableOpacity>
+          </View>
+
+          <ButtonAction
+            title='ENTRAR'
+            onPress={signInValidation}
+          />
 
           <TouchableOpacity
-            style={styles.forgotPasswordTouchable}
-            onPress={openScreenForgotPassword} >
-            <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+            style={styles.doesNotHaveAccountTouchable}
+            onPress={openScreenRegister}>
+            <Text style={styles.doesNotHaveAccountText}>
+              Ainda não possui uma conta? <Text style={{ color: '#5D9ED4' }}>Registre-se</Text>
+            </Text>
           </TouchableOpacity>
-        </View>
-
-        <ButtonAction
-          title='ENTRAR'
-          onPress={signInValidation}
-        />
-
-        <TouchableOpacity
-          style={styles.doesNotHaveAccountTouchable}
-          onPress={openScreenRegister}>
-          <Text style={styles.doesNotHaveAccountText}>
-            Ainda não possui uma conta? <Text style={{ color: '#5D9ED4' }}>Registre-se</Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </TouchableWithoutFeedback>
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAwareScrollView>
   )
 }
