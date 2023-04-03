@@ -31,5 +31,12 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 20,
         padding: 5
+    },
+    logoImage: {
+        width: 350,
+        height: 200,
+        alignSelf: 'center',
+        marginTop: 50,
+        marginBottom: 50
     }
 });

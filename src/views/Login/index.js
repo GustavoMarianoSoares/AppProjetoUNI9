@@ -1,4 +1,4 @@
-import { View, Alert, TouchableOpacity, Text } from 'react-native'
+import { View, Alert, TouchableOpacity, Text, Image } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
@@ -86,6 +86,11 @@ export function Login({ navigation }) {
 
   return (
     <View style={{ marginTop: 50 }}>
+      <Image 
+        style={styles.logoImage}
+        source={require('../../assets/logo.png')}
+      />
+
       <InputTexts
         placeholder='E-mail'
         onChangeText={setEmail}
