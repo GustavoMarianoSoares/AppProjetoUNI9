@@ -1,4 +1,4 @@
-import { View, Alert, TouchableOpacity, Text, Image } from 'react-native'
+import { View, Alert, TouchableOpacity, Text, Image, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
@@ -85,55 +85,57 @@ export function Login({ navigation }) {
   }
 
   return (
-    <View style={{ marginTop: 50 }}>
-      <Image 
-        style={styles.logoImage}
-        source={require('../../assets/logo.png')}
-      />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={{ marginTop: 50 }}>
+        <Image
+          style={styles.logoImage}
+          source={require('../../assets/logo.png')}
+        />
 
-      <InputTexts
-        placeholder='E-mail'
-        onChangeText={setEmail}
-        keyboardType='email-address'
-        autoCapitalize='none'
-      />
+        <InputTexts
+          placeholder='E-mail'
+          onChangeText={setEmail}
+          keyboardType='email-address'
+          autoCapitalize='none'
+        />
 
-      <InputTexts
-        placeholder='Senha'
-        onChangeText={setPassword}
-        secureTextEntry={!isChecked}
-      />
-      <View style={styles.passwordsView}>
-        <TouchableOpacity style={styles.showPassword}
-          onPress={changePasswordSecure}>
-          <Checkbox
-            onValueChange={changePasswordSecure}
-            value={isChecked}
-            color={isChecked ? '#339FFF' : '#797979'}
-          />
+        <InputTexts
+          placeholder='Senha'
+          onChangeText={setPassword}
+          secureTextEntry={!isChecked}
+        />
+        <View style={styles.passwordsView}>
+          <TouchableOpacity style={styles.showPassword}
+            onPress={changePasswordSecure}>
+            <Checkbox
+              onValueChange={changePasswordSecure}
+              value={isChecked}
+              color={isChecked ? '#339FFF' : '#797979'}
+            />
 
-          <Text style={styles.showPasswordText}>Mostrar senha</Text>
-        </TouchableOpacity>
+            <Text style={styles.showPasswordText}>Mostrar senha</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.forgotPasswordTouchable}
+            onPress={openScreenForgotPassword} >
+            <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+          </TouchableOpacity>
+        </View>
+
+        <ButtonAction
+          title='ENTRAR'
+          onPress={signInValidation}
+        />
 
         <TouchableOpacity
-          style={styles.forgotPasswordTouchable}
-          onPress={openScreenForgotPassword} >
-          <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+          style={styles.doesNotHaveAccountTouchable}
+          onPress={openScreenRegister}>
+          <Text style={styles.doesNotHaveAccountText}>
+            Ainda não possui uma conta? <Text style={{ color: '#5D9ED4' }}>Registre-se</Text>
+          </Text>
         </TouchableOpacity>
       </View>
-
-      <ButtonAction
-        title='ENTRAR'
-        onPress={signInValidation}
-      />
-
-      <TouchableOpacity
-        style={styles.doesNotHaveAccountTouchable}
-        onPress={openScreenRegister}>
-        <Text style={styles.doesNotHaveAccountText}>
-          Ainda não possui uma conta? <Text style={{ color: '#5D9ED4' }}>Registre-se</Text>
-        </Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableWithoutFeedback>
   )
 }

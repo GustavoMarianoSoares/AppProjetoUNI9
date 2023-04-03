@@ -1,4 +1,4 @@
-import { View, Alert, TouchableOpacity, Text } from 'react-native'
+import { View, Alert, TouchableOpacity, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
@@ -69,45 +69,47 @@ export function Register({ navigation }) {
   }
 
   return (
-    <View>
-      <InputTexts
-        placeholder='Nome'
-        onChangeText={setName}
-      />
-
-      <InputTexts
-        placeholder='E-mail'
-        onChangeText={setEmail}
-        keyboardType='email-address'
-        autoCapitalize='none'
-      />
-
-      <InputTexts
-        placeholder='Senha'
-        onChangeText={setPassword}
-        secureTextEntry={!isChecked}
-      />
-
-      <InputTexts
-        placeholder='Confirmar senha'
-        onChangeText={setConfirmPassword}
-        secureTextEntry={!isChecked}
-      />
-
-      <TouchableOpacity style={styles.showPassword}
-        onPress={changePasswordSecure}>
-        <Checkbox
-          value={isChecked}
-          color={isChecked ? '#339FFF' : '#797979'}
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View>
+        <InputTexts
+          placeholder='Nome'
+          onChangeText={setName}
         />
 
-        <Text style={styles.showPasswordText}>Mostrar senhas</Text>
-      </TouchableOpacity>
+        <InputTexts
+          placeholder='E-mail'
+          onChangeText={setEmail}
+          keyboardType='email-address'
+          autoCapitalize='none'
+        />
 
-      <ButtonAction
-        title='CADASTRAR'
-        onPress={registerValidation}
-      />
-    </View>
+        <InputTexts
+          placeholder='Senha'
+          onChangeText={setPassword}
+          secureTextEntry={!isChecked}
+        />
+
+        <InputTexts
+          placeholder='Confirmar senha'
+          onChangeText={setConfirmPassword}
+          secureTextEntry={!isChecked}
+        />
+
+        <TouchableOpacity style={styles.showPassword}
+          onPress={changePasswordSecure}>
+          <Checkbox
+            value={isChecked}
+            color={isChecked ? '#339FFF' : '#797979'}
+          />
+
+          <Text style={styles.showPasswordText}>Mostrar senhas</Text>
+        </TouchableOpacity>
+
+        <ButtonAction
+          title='CADASTRAR'
+          onPress={registerValidation}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   )
 }

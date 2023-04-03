@@ -1,4 +1,4 @@
-import { View, Alert } from 'react-native'
+import { View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
@@ -46,25 +46,27 @@ export function ForgotPassword({ navigation }) {
     }
 
     return (
-        <View>
-            <InputTexts
-                placeholder='E-mail'
-                onChangeText={setEmail}
-                keyboardType='email-address'
-                autoCapitalize='none'
-            />
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View>
+                <InputTexts
+                    placeholder='E-mail'
+                    onChangeText={setEmail}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                />
 
-            <InputTexts
-                placeholder='Confirmar e-mail'
-                onChangeText={setConfirmEmail}
-                keyboardType='email-address'
-                autoCapitalize='none'
-            />
+                <InputTexts
+                    placeholder='Confirmar e-mail'
+                    onChangeText={setConfirmEmail}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                />
 
-            <ButtonAction
-                title='ENVIAR E-MAIL'
-                onPress={forgotPasswordValidation}
-            />
-        </View>
+                <ButtonAction
+                    title='ENVIAR E-MAIL'
+                    onPress={forgotPasswordValidation}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
