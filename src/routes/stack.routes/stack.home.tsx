@@ -12,7 +12,10 @@ export function StackHome() {
                 name="Home"
                 component={Home}
                 options={{
-                    headerShown: false
+                    headerShown: false,
+                    headerStyle: {
+                        backgroundColor: '#000',
+                    },
                 }}
             />
 

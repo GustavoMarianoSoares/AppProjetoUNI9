@@ -1,12 +1,16 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import { ButtonAction } from "../../components/ButtonAction"
 import { InputTexts } from "../../components/InputTexts"
 
+import styles from './styles'
+
+import { Entypo } from '@expo/vector-icons';
+
 import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
-import { ScrollView } from 'react-native'
+
 
 export function Home({ navigation }) {
   const [patrimony, setPatrimony] = useState('')
@@ -87,7 +91,15 @@ export function Home({ navigation }) {
   }, []);
 
   return (
-    <ScrollView style={{ marginTop: 50 }}>
+    <ScrollView>
+      <View style={styles.headerHome}>
+        <Text style={styles.headerText}>Olá, {auth().currentUser.displayName} 👋</Text>
+
+        <TouchableOpacity onPress={handleSignOut}>
+          <Entypo name="log-out" size={35} color="white" marginRight={20} />
+        </TouchableOpacity>
+      </View>
+
       {
         orders.map((item) =>
           <View key={item.key}>
@@ -145,15 +157,6 @@ export function Home({ navigation }) {
       <ButtonAction
         title='ENVIAR CHAMADO'
         onPress={handleNewOrder}
-      />
-
-      <Text>
-        Olá {auth().currentUser.displayName}
-      </Text>
-
-      <ButtonAction
-        title='LOGOUT'
-        onPress={handleSignOut}
       />
     </ScrollView>
   )
