@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     forgotPasswordTouchable: {
         marginRight: 20,
-        marginBottom: 10,
     },
     forgotPasswordText: {
         color: '#ADADAD',
@@ -29,8 +28,10 @@ export default StyleSheet.create({
     passwordsView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: 20,
-        padding: 5
+        padding: 5,
+        marginBottom: 10
     },
     logoImage: {
         width: 350,

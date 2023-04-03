@@ -107,6 +107,7 @@ export function Login({ navigation }) {
         <TouchableOpacity style={styles.showPassword}
           onPress={changePasswordSecure}>
           <Checkbox
+            onValueChange={changePasswordSecure}
             value={isChecked}
             color={isChecked ? '#339FFF' : '#797979'}
           />
