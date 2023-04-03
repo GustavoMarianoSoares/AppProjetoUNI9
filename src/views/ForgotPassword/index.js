@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
+import { ImageLogo } from "../../components/ImageLogo"
 
 import auth from '@react-native-firebase/auth'
 
@@ -48,6 +49,8 @@ export function ForgotPassword({ navigation }) {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View>
+                <ImageLogo />
+
                 <InputTexts
                     placeholder='E-mail'
                     onChangeText={setEmail}

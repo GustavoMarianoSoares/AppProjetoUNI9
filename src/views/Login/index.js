@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
+import { ImageLogo } from "../../components/ImageLogo"
 import Checkbox from 'expo-checkbox';
 
 import styles from './styles'
@@ -87,10 +88,8 @@ export function Login({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={{ marginTop: 50 }}>
-        <Image
-          style={styles.logoImage}
-          source={require('../../assets/logo.png')}
-        />
+        
+        <ImageLogo />
 
         <InputTexts
           placeholder='E-mail'

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import { InputTexts } from "../../components/InputTexts"
 import { ButtonAction } from "../../components/ButtonAction"
+import { ImageLogo } from "../../components/ImageLogo"
 import Checkbox from 'expo-checkbox';
 
 import styles from './styles'
@@ -71,6 +72,8 @@ export function Register({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View>
+        <ImageLogo />
+
         <InputTexts
           placeholder='Nome'
           onChangeText={setName}
