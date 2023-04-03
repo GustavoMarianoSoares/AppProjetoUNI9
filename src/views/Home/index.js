@@ -133,6 +133,10 @@ export function Home({ navigation }) {
         onPress={handleNewOrder}
       />
 
+      <Text>
+        Olá {auth().currentUser.displayName} 
+      </Text>
+
       <ButtonAction
         title='LOGOUT'
         onPress={handleSignOut}

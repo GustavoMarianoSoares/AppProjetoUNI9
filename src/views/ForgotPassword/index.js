@@ -18,6 +18,10 @@ export function ForgotPassword({ navigation }) {
         if (error === 'auth/user-not-found') {
             Alert.alert('E-MAIL', 'E-mail não encontrado, verifique se está correto e tente novamente.')
         }
+
+        if (error === 'auth/network-request-failed') {
+            Alert.alert('CONECTE-SE', 'Verifique se você está conectado a internet e tente novamente.')
+        }
     }
 
     function forgotPasswordValidation() {

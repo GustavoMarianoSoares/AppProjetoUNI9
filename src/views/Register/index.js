@@ -10,6 +10,7 @@ import styles from './styles'
 import auth from '@react-native-firebase/auth'
 
 export function Register({ navigation }) {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -34,7 +35,7 @@ export function Register({ navigation }) {
   }
 
   function registerValidation() {
-    if (email == "" || password == "" || confirmPassword == "") {
+    if (email == "" || password == "" || confirmPassword == "" || name == "") {
       Alert.alert('PREENCHA TODOS OS CAMPOS', 'Para se registrar no sistema informe todos os campos acima.')
     } else if (confirmPassword != password) {
       Alert.alert('SENHAS DIFERENTES', 'As senhas digitadas não correspondem, verifique e tente novamente.')
@@ -48,6 +49,9 @@ export function Register({ navigation }) {
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         auth().currentUser.sendEmailVerification()
+        auth().currentUser.updateProfile({
+          displayName: name
+        })
         Alert.alert('CADASTRADO', 'Usuário cadastrado no sistema com sucesso, enviamos um e-mail para que você verifique-o somente assim poderá entrar no sistema.')
         navigation.goBack()
       })
@@ -66,6 +70,11 @@ export function Register({ navigation }) {
 
   return (
     <View>
+      <InputTexts
+        placeholder='Nome'
+        onChangeText={setName}
+      />
+
       <InputTexts
         placeholder='E-mail'
         onChangeText={setEmail}
