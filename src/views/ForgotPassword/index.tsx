@@ -48,7 +48,7 @@ export function ForgotPassword({ navigation }) {
     }
 
     return (
-        <KeyboardAwareScrollView behavior="padding" style={{ flex: 1 }}>
+        <KeyboardAwareScrollView style={{ flex: 1 }}>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <ScrollView>
                     <ImageLogo />
@@ -58,6 +58,8 @@ export function ForgotPassword({ navigation }) {
                         onChangeText={setEmail}
                         keyboardType='email-address'
                         autoCapitalize='none'
+                        secureTextEntry={undefined}
+                        value={undefined}
                     />
 
                     <InputTexts
@@ -65,6 +67,8 @@ export function ForgotPassword({ navigation }) {
                         onChangeText={setConfirmEmail}
                         keyboardType='email-address'
                         autoCapitalize='none'
+                        secureTextEntry={undefined}
+                        value={undefined}
                     />
 
                     <ButtonAction

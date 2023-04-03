@@ -37,21 +37,37 @@ export function EditOrder({ navigation, route }) {
       <InputTexts
         value={patrimony}
         onChangeText={setPatrimony}
+        placeholder={undefined}
+        secureTextEntry={undefined}
+        keyboardType={undefined}
+        autoCapitalize={undefined}
       />
 
       <InputTexts
         value={owner}
         onChangeText={setOwner}
+        placeholder={undefined}
+        secureTextEntry={undefined}
+        keyboardType={undefined}
+        autoCapitalize={undefined}
       />
 
       <InputTexts
         value={component}
         onChangeText={setComponent}
+        placeholder={undefined}
+        secureTextEntry={undefined}
+        keyboardType={undefined}
+        autoCapitalize={undefined}
       />
 
       <InputTexts
         value={description}
         onChangeText={setDescription}
+        placeholder={undefined}
+        secureTextEntry={undefined}
+        keyboardType={undefined}
+        autoCapitalize={undefined}
       />
 
       <ButtonAction

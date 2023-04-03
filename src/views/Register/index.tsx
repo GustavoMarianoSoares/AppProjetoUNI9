@@ -71,7 +71,7 @@ export function Register({ navigation }) {
   }
 
   return (
-    <KeyboardAwareScrollView behavior="padding" style={{ flex: 1 }}>
+    <KeyboardAwareScrollView style={{ flex: 1 }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <ScrollView>
           <ImageLogo />
@@ -79,6 +79,10 @@ export function Register({ navigation }) {
           <InputTexts
             placeholder='Nome'
             onChangeText={setName}
+            secureTextEntry={undefined}
+            keyboardType={undefined}
+            value={undefined}
+            autoCapitalize={undefined}
           />
 
           <InputTexts
@@ -86,18 +90,26 @@ export function Register({ navigation }) {
             onChangeText={setEmail}
             keyboardType='email-address'
             autoCapitalize='none'
+            secureTextEntry={undefined}
+            value={undefined}
           />
 
           <InputTexts
             placeholder='Senha'
             onChangeText={setPassword}
             secureTextEntry={!isChecked}
+            keyboardType={undefined}
+            value={undefined}
+            autoCapitalize={undefined}
           />
 
           <InputTexts
             placeholder='Confirmar senha'
             onChangeText={setConfirmPassword}
             secureTextEntry={!isChecked}
+            keyboardType={undefined}
+            value={undefined}
+            autoCapitalize={undefined}
           />
 
           <TouchableOpacity style={styles.showPassword}

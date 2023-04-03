@@ -87,7 +87,7 @@ export function Login({ navigation }) {
   }
 
   return (
-    <KeyboardAwareScrollView behavior="padding" style={{ flex: 1 }}>
+    <KeyboardAwareScrollView style={{ flex: 1 }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <ScrollView style={{ marginTop: 50 }}>
 
@@ -98,13 +98,19 @@ export function Login({ navigation }) {
             onChangeText={setEmail}
             keyboardType='email-address'
             autoCapitalize='none'
+            secureTextEntry={undefined}
+            value={undefined}
           />
 
           <InputTexts
             placeholder='Senha'
             onChangeText={setPassword}
             secureTextEntry={!isChecked}
+            keyboardType={undefined}
+            value={undefined}
+            autoCapitalize={undefined}
           />
+
           <View style={styles.passwordsView}>
             <TouchableOpacity style={styles.showPassword}
               onPress={changePasswordSecure}>
