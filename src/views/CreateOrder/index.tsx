@@ -34,7 +34,6 @@ export function CreateOrder({ navigation }) {
         navigation.goBack()
       }
       )
-      .catch((error) => console.log(error))
   }
 
   return (
