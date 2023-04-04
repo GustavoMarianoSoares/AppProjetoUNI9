@@ -21,6 +21,7 @@ export default StyleSheet.create({
     orderInfos: {
         color: '#FFF',
         marginTop: 10,
+        marginRight: 50,
         textTransform: 'uppercase'
     },
     icons: {
