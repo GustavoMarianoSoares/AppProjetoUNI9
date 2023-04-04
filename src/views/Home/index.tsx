@@ -6,6 +6,7 @@ import { Header } from "../../components/Header"
 
 import styles from './styles'
 import { Feather } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
 
 import firestore from "@react-native-firebase/firestore"
 
@@ -27,6 +28,28 @@ export function Home({ navigation }) {
             .delete()
             .then(() => {
               Alert.alert('Deletado', 'Chamado deletado com sucesso')
+            })
+      },
+    ]);
+
+  }
+
+  function handleClosed(id) {
+    Alert.alert('', 'Tem certeza que deseja fechar este chamado?', [
+      {
+        text: 'Cancelar',
+      },
+      {
+        text: 'Ok',
+        onPress: () =>
+          firestore()
+            .collection('orders')
+            .doc(id)
+            .update({
+              status: 'closed'
+            })
+            .then(() => {
+              Alert.alert('Concluído', 'Chamado concluído com sucesso')
             })
       },
     ]);
@@ -69,29 +92,35 @@ export function Home({ navigation }) {
 
       {
         orders.map((item) =>
-          <View key={item.key} style={styles.container}>
-            <View>
-              <Text style={styles.component}>{item.component}</Text>
-              <Text style={styles.orderInfos}>{item.description}</Text>
-              <Text style={styles.orderInfos}>{item.owner}</Text>
-              <Text style={styles.orderInfos}>{item.telephoneOwner}</Text>
-              <Text style={styles.orderInfos}>{item.patrimony}</Text>
-            </View>
+            <View key={item.key} style={styles.container}>
+              <View>
+                <Text style={styles.component}>{item.component}</Text>
+                <Text style={styles.orderInfos}>{item.description}</Text>
+                <Text style={styles.orderInfos}>{item.owner}</Text>
+                <Text style={styles.orderInfos}>{item.telephoneOwner}</Text>
+                <Text style={styles.orderInfos}>{item.patrimony}</Text>
+              </View>
 
-            <View>
-              <TouchableOpacity
-                style={styles.icons}
-                onPress={() => openEditOrder(item)}>
-                <Feather name="edit" size={35} color="white" />
-              </TouchableOpacity>
+              <View>
+                <TouchableOpacity
+                  style={styles.icons}
+                  onPress={() => openEditOrder(item)}>
+                  <Feather name="edit" size={35} color="white" />
+                </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.icons}
-                onPress={() => handleDelete(item.key)}>
-                <Feather name="trash-2" size={35} color="white" />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.icons}
+                  onPress={() => handleDelete(item.key)}>
+                  <Feather name="trash-2" size={35} color="white" />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.icons}
+                  onPress={() => handleClosed(item.key)}>
+                  <Octicons name="issue-closed" size={35} color="white" />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
         )
       }
     </ScrollView>
