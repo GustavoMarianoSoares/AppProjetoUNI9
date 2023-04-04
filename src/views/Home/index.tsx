@@ -2,36 +2,16 @@ import { View, Text, Alert, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import { ButtonAction } from "../../components/ButtonAction"
-import { InputTexts } from "../../components/InputTexts"
 import { Header } from "../../components/Header"
 
 import styles from './styles'
+import { Feather } from '@expo/vector-icons';
 
-import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
 
 
 export function Home({ navigation }) {
-  const [patrimony, setPatrimony] = useState('')
-  const [owner, setOwner] = useState('')
-  const [component, setComponent] = useState('')
-  const [description, setDescription] = useState('')
   const [orders, setOrders] = useState([])
-
-  function handleNewOrder() {
-    firestore()
-      .collection('orders')
-      .add({
-        patrimony,
-        owner,
-        component,
-        description,
-        status: 'open',
-        created_at: firestore.FieldValue.serverTimestamp()
-      })
-      .then(() => Alert.alert('Chamado criado', 'Chamado criado com sucesso'))
-      .catch((error) => console.log(error))
-  }
 
   function handleDelete(id) {
     Alert.alert('', 'Tem certeza que deseja deletar este pedido?', [
@@ -57,6 +37,10 @@ export function Home({ navigation }) {
     navigation.navigate('EditOrder', { item: item })
   }
 
+  function openCreateOrder() {
+    navigation.navigate('CreateOrder')
+  }
+
   useEffect(() => {
     const subscriber = firestore()
       .collection('orders')
@@ -77,64 +61,39 @@ export function Home({ navigation }) {
   return (
     <ScrollView>
       <Header />
+
+      <ButtonAction
+        title='CRIAR CHAMADO'
+        onPress={openCreateOrder}
+      />
+
       {
         orders.map((item) =>
-          <View key={item.key}>
-            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.patrimony}</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.owner}</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.description}</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.component}</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 16 }}>{item.status}</Text>
-            <ButtonAction
-              title='DELETAR'
-              onPress={() => handleDelete(item.key)}
-            />
-            <ButtonAction
-              title='EDITAR PEDIDO'
-              onPress={() => openEditOrder(item)}
-            />
+          <View key={item.key} style={styles.container}>
+            <View>
+              <Text style={styles.component}>{item.component}</Text>
+              <Text style={styles.orderInfos}>{item.description}</Text>
+              <Text style={styles.orderInfos}>{item.owner}</Text>
+              <Text style={styles.orderInfos}>{item.telephoneOwner}</Text>
+              <Text style={styles.orderInfos}>{item.patrimony}</Text>
+            </View>
+
+            <View>
+              <TouchableOpacity
+                style={styles.icons}
+                onPress={() => openEditOrder(item)}>
+                <Feather name="edit" size={35} color="white" />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.icons}
+                onPress={() => handleDelete(item.key)}>
+                <Feather name="trash-2" size={35} color="white" />
+              </TouchableOpacity>
+            </View>
           </View>
         )
       }
-
-      <InputTexts
-        placeholder='Número do patrimonio'
-        onChangeText={setPatrimony}
-        secureTextEntry={undefined}
-        keyboardType={undefined}
-        value={undefined}
-        autoCapitalize={undefined}
-      />
-
-      <InputTexts
-        placeholder='Nome do Dono(a)'
-        onChangeText={setOwner}
-        secureTextEntry={undefined}
-        keyboardType={undefined}
-        value={undefined}
-        autoCapitalize={undefined}
-      />
-
-      <InputTexts
-        placeholder='Componente'
-        onChangeText={setComponent}
-        secureTextEntry={undefined}
-        keyboardType={undefined}
-        value={undefined}
-        autoCapitalize={undefined}
-      />
-
-      <InputTexts
-        placeholder='Descrição'
-        onChangeText={setDescription}
-        secureTextEntry={undefined}
-        keyboardType={undefined}
-        value={undefined} autoCapitalize={undefined} />
-
-      <ButtonAction
-        title='ENVIAR CHAMADO'
-        onPress={handleNewOrder}
-      />
     </ScrollView>
   )
 }

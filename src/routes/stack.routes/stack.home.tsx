@@ -4,6 +4,7 @@ const { Screen, Navigator } = createNativeStackNavigator();
 
 import { Home } from "../../views/Home"
 import { EditOrder } from "../../views/EditOrder"
+import { CreateOrder } from "../../views/CreateOrder"
 
 export function StackHome() {
     return (
@@ -19,6 +20,14 @@ export function StackHome() {
             <Screen
                 name="EditOrder"
                 component={EditOrder}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
+            <Screen
+                name="CreateOrder"
+                component={CreateOrder}
                 options={{
                     headerShown: false,
                 }}

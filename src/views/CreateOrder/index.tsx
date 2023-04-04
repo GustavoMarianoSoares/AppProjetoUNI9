@@ -5,22 +5,19 @@ import { ButtonAction } from "../../components/ButtonAction"
 import { InputTexts } from "../../components/InputTexts"
 import { Header } from "../../components/Header"
 
-import firestore from '@react-native-firebase/firestore';
+import firestore from "@react-native-firebase/firestore"
 
-export function EditOrder({ navigation, route }) {
-  const infos = route.params.item
+export function CreateOrder({ navigation }) {
+  const [patrimony, setPatrimony] = useState('')
+  const [telephoneOwner, setTelephoneOwner] = useState('')
+  const [owner, setOwner] = useState('')
+  const [component, setComponent] = useState('')
+  const [description, setDescription] = useState('')
 
-  const [patrimony, setPatrimony] = useState(infos.patrimony)
-  const [owner, setOwner] = useState(infos.owner)
-  const [telephoneOwner, setTelephoneOwner] = useState(infos.owner)
-  const [component, setComponent] = useState(infos.component)
-  const [description, setDescription] = useState(infos.description)
-
-  function handleEditOrder() {
+  function handleNewOrder() {
     firestore()
       .collection('orders')
-      .doc(infos.key)
-      .set({
+      .add({
         patrimony,
         owner,
         telephoneOwner,
@@ -30,65 +27,67 @@ export function EditOrder({ navigation, route }) {
         created_at: firestore.FieldValue.serverTimestamp()
       })
       .then(() => {
-        Alert.alert('Atualizado', 'Pedido atualizado')
+        Alert.alert('Chamado criado', 'Chamado criado com sucesso')
         navigation.goBack()
-      });
+      }
+      )
+      .catch((error) => console.log(error))
   }
 
   return (
     <View>
       <Header />
 
-      <Text>Editar Pedido</Text>
+      <Text>Criar Chamado</Text>
 
       <InputTexts
-        value={patrimony}
-        onChangeText={setPatrimony}
         placeholder='Número do patrimonio'
+        onChangeText={setPatrimony}
         secureTextEntry={undefined}
         keyboardType={undefined}
+        value={undefined}
         autoCapitalize={undefined}
       />
 
       <InputTexts
-        value={owner}
-        onChangeText={setOwner}
         placeholder='Nome do Dono(a)'
+        onChangeText={setOwner}
         secureTextEntry={undefined}
         keyboardType={undefined}
+        value={undefined}
         autoCapitalize={undefined}
       />
 
       <InputTexts
-        value={telephoneOwner}
-        onChangeText={setTelephoneOwner}
         placeholder='Telefone do Dono(a)'
+        onChangeText={setTelephoneOwner}
         secureTextEntry={undefined}
         keyboardType={undefined}
+        value={undefined}
         autoCapitalize={undefined}
       />
 
       <InputTexts
-        value={component}
-        onChangeText={setComponent}
         placeholder='Componente'
+        onChangeText={setComponent}
         secureTextEntry={undefined}
         keyboardType={undefined}
+        value={undefined}
         autoCapitalize={undefined}
       />
 
       <InputTexts
-        value={description}
-        onChangeText={setDescription}
         placeholder='Descrição'
+        onChangeText={setDescription}
         secureTextEntry={undefined}
         keyboardType={undefined}
+        value={undefined}
         autoCapitalize={undefined}
       />
 
       <ButtonAction
-        title='EDITAR CHAMADO'
-        onPress={handleEditOrder}
+        title='ENVIAR CHAMADO'
+        onPress={handleNewOrder}
       />
     </View>
   )
