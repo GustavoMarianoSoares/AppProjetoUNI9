@@ -12,7 +12,7 @@ export function EditOrder({ navigation, route }) {
 
   const [patrimony, setPatrimony] = useState(infos.patrimony)
   const [owner, setOwner] = useState(infos.owner)
-  const [telephoneOwner, setTelephoneOwner] = useState(infos.owner)
+  const [telephoneOwner, setTelephoneOwner] = useState(infos.telephoneOwner)
   const [component, setComponent] = useState(infos.component)
   const [description, setDescription] = useState(infos.description)
 
