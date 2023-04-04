@@ -14,7 +14,7 @@ export function Home({ navigation }) {
   const [orders, setOrders] = useState([])
 
   function handleDelete(id) {
-    Alert.alert('', 'Tem certeza que deseja deletar este pedido?', [
+    Alert.alert('', 'Tem certeza que deseja deletar este chamado?', [
       {
         text: 'Cancelar',
       },
@@ -26,7 +26,7 @@ export function Home({ navigation }) {
             .doc(id)
             .delete()
             .then(() => {
-              Alert.alert('Deletado', 'Pedido deletado com sucesso')
+              Alert.alert('Deletado', 'Chamado deletado com sucesso')
             })
       },
     ]);

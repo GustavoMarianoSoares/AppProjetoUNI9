@@ -33,7 +33,7 @@ export function EditOrder({ navigation, route }) {
         created_at: firestore.FieldValue.serverTimestamp()
       })
       .then(() => {
-        Alert.alert('Atualizado', 'Pedido atualizado')
+        Alert.alert('Atualizado', 'Chamado atualizado')
         navigation.goBack()
       });
   }
@@ -44,7 +44,7 @@ export function EditOrder({ navigation, route }) {
         <ScrollView>
           <Header />
 
-          <Text style={styles.textEdit}>Editar Pedido</Text>
+          <Text style={styles.textEdit}>Editar Chamado</Text>
 
           <InputTexts
             value={patrimony}
