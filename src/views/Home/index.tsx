@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 
 import { ButtonAction } from "../../components/ButtonAction"
 import { InputTexts } from "../../components/InputTexts"
+import { Header } from "../../components/Header"
 
 import styles from './styles'
-
-import { Entypo } from '@expo/vector-icons';
 
 import auth from "@react-native-firebase/auth"
 import firestore from "@react-native-firebase/firestore"
@@ -18,21 +17,6 @@ export function Home({ navigation }) {
   const [component, setComponent] = useState('')
   const [description, setDescription] = useState('')
   const [orders, setOrders] = useState([])
-
-
-  function handleSignOut() {
-    Alert.alert('', 'Tem certeza que deseja sair?', [
-      {
-        text: 'Cancelar',
-      },
-      {
-        text: 'Ok',
-        onPress: () =>
-          auth().signOut()
-      },
-    ]);
-
-  }
 
   function handleNewOrder() {
     firestore()
@@ -92,14 +76,7 @@ export function Home({ navigation }) {
 
   return (
     <ScrollView>
-      <View style={styles.headerHome}>
-        <Text style={styles.headerText}>Olá, {auth().currentUser.displayName} 👋</Text>
-
-        <TouchableOpacity onPress={handleSignOut}>
-          <Entypo name="log-out" size={35} color="white" marginRight={20} />
-        </TouchableOpacity>
-      </View>
-
+      <Header />
       {
         orders.map((item) =>
           <View key={item.key}>

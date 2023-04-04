@@ -13,16 +13,15 @@ export function StackHome() {
                 component={Home}
                 options={{
                     headerShown: false,
-                    headerStyle: {
-                        backgroundColor: '#000',
-                    },
                 }}
             />
 
             <Screen
                 name="EditOrder"
                 component={EditOrder}
-                options={{ title: 'EDITAR PEDIDO' }}
+                options={{
+                    headerShown: false,
+                }}
             />
         </Navigator>
     )

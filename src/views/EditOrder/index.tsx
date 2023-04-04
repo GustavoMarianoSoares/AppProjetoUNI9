@@ -1,8 +1,9 @@
-import { View, Alert } from 'react-native'
+import { View, Alert,Text } from 'react-native'
 import React, { useState } from 'react'
 
 import { ButtonAction } from "../../components/ButtonAction"
 import { InputTexts } from "../../components/InputTexts"
+import { Header } from "../../components/Header"
 
 import firestore from '@react-native-firebase/firestore';
 
@@ -34,6 +35,10 @@ export function EditOrder({ navigation, route }) {
 
   return (
     <View>
+      <Header />
+
+      <Text>Editar Pedido</Text>
+
       <InputTexts
         value={patrimony}
         onChangeText={setPatrimony}
