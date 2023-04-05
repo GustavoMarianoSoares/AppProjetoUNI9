@@ -1,27 +1,33 @@
-import { ScrollView, Alert, Text, Keyboard, TouchableWithoutFeedback } from 'react-native'
-import React, { useState } from 'react'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+  ScrollView,
+  Alert,
+  Text,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
+import React, { useState } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { ButtonAction } from "../../components/ButtonAction"
-import { InputTexts } from "../../components/InputTexts"
-import { Header } from "../../components/Header"
+import { ButtonAction } from "../../components/ButtonAction";
+import { InputTexts } from "../../components/InputTexts";
+import { Header } from "../../components/Header";
 
-import styles from './styles';
+import styles from "./styles";
 
-import firestore from '@react-native-firebase/firestore';
+import firestore from "@react-native-firebase/firestore";
 
 export function EditOrder({ navigation, route }) {
-  const infos = route.params.item
+  const infos = route.params.item;
 
-  const [patrimony, setPatrimony] = useState(infos.patrimony)
-  const [owner, setOwner] = useState(infos.owner)
-  const [telephoneOwner, setTelephoneOwner] = useState(infos.telephoneOwner)
-  const [component, setComponent] = useState(infos.component)
-  const [description, setDescription] = useState(infos.description)
+  const [patrimony, setPatrimony] = useState(infos.patrimony);
+  const [owner, setOwner] = useState(infos.owner);
+  const [telephoneOwner, setTelephoneOwner] = useState(infos.telephoneOwner);
+  const [component, setComponent] = useState(infos.component);
+  const [description, setDescription] = useState(infos.description);
 
   function handleEditOrder() {
     firestore()
-      .collection('orders')
+      .collection("orders")
       .doc(infos.key)
       .set({
         patrimony,
@@ -29,12 +35,12 @@ export function EditOrder({ navigation, route }) {
         telephoneOwner,
         component,
         description,
-        status: 'open',
-        created_at: firestore.FieldValue.serverTimestamp()
+        status: "open",
+        created_at: firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
-        Alert.alert('Atualizado', 'Chamado atualizado')
-        navigation.goBack()
+        Alert.alert("Atualizado", "Chamado atualizado");
+        navigation.goBack();
       });
   }
 
@@ -49,7 +55,7 @@ export function EditOrder({ navigation, route }) {
           <InputTexts
             value={patrimony}
             onChangeText={setPatrimony}
-            placeholder='Número do patrimonio'
+            placeholder="Número do patrimonio"
             secureTextEntry={undefined}
             keyboardType={undefined}
             autoCapitalize={undefined}
@@ -58,7 +64,7 @@ export function EditOrder({ navigation, route }) {
           <InputTexts
             value={owner}
             onChangeText={setOwner}
-            placeholder='Nome do Dono(a)'
+            placeholder="Nome do Dono(a)"
             secureTextEntry={undefined}
             keyboardType={undefined}
             autoCapitalize={undefined}
@@ -67,7 +73,7 @@ export function EditOrder({ navigation, route }) {
           <InputTexts
             value={telephoneOwner}
             onChangeText={setTelephoneOwner}
-            placeholder='Telefone do Dono(a)'
+            placeholder="Telefone do Dono(a)"
             secureTextEntry={undefined}
             keyboardType={undefined}
             autoCapitalize={undefined}
@@ -76,7 +82,7 @@ export function EditOrder({ navigation, route }) {
           <InputTexts
             value={component}
             onChangeText={setComponent}
-            placeholder='Componente'
+            placeholder="Componente"
             secureTextEntry={undefined}
             keyboardType={undefined}
             autoCapitalize={undefined}
@@ -85,18 +91,15 @@ export function EditOrder({ navigation, route }) {
           <InputTexts
             value={description}
             onChangeText={setDescription}
-            placeholder='Descrição'
+            placeholder="Descrição"
             secureTextEntry={undefined}
             keyboardType={undefined}
             autoCapitalize={undefined}
           />
 
-          <ButtonAction
-            title='EDITAR CHAMADO'
-            onPress={handleEditOrder}
-          />
+          <ButtonAction title="EDITAR CHAMADO" onPress={handleEditOrder} />
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAwareScrollView>
-  )
+  );
 }
