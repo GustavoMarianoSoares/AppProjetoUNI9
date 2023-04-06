@@ -27,10 +27,52 @@ export function Home({ navigation }) {
             .doc(id)
             .delete()
             .then(() => {
-              Alert.alert("Deletado", "Chamado deletado com sucesso");
+              Alert.alert("DELETADO", "Chamado deletado com sucesso");
             }),
       },
     ]);
+  }
+
+  function handleStatus(item) {
+    if (item.status == "open") {
+      Alert.alert("", "Tem certeza que deseja fechar este chamado?", [
+        {
+          text: "Cancelar",
+        },
+        {
+          text: "Ok",
+          onPress: () =>
+            firestore()
+              .collection("orders")
+              .doc(item.key)
+              .update({
+                status: "closed",
+              })
+              .then(() => {
+                Alert.alert("FECHADO", "Chamado fechado com sucesso");
+              }),
+        },
+      ]);
+    } else {
+      Alert.alert("", "Tem certeza que deseja reabrir este chamado?", [
+        {
+          text: "Cancelar",
+        },
+        {
+          text: "Ok",
+          onPress: () =>
+            firestore()
+              .collection("orders")
+              .doc(item.key)
+              .update({
+                status: "open",
+              })
+              .then(() => {
+                Alert.alert("ABERTO", "Chamado aberto com sucesso");
+              }),
+        },
+      ]);
+    }
   }
 
   function openEditOrder(item) {
@@ -83,10 +125,26 @@ export function Home({ navigation }) {
           >
             <Feather name="trash-2" size={35} color="white" />
           </TouchableOpacity>
+
+          {item.status == "open" ? (
+            <TouchableOpacity
+              style={styles.icons}
+              onPress={() => handleStatus(item)}
+            >
+              <Octicons name="verified" size={35} color="white" />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.icons}
+              onPress={() => handleStatus(item)}
+            >
+              <Octicons name="unverified" size={35} color="white" />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     ) : (
-      <Text></Text>
+      <View key={item.key}></View>
     )
   );
 
