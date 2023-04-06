@@ -28,4 +28,22 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
+  statusOpacity: {
+    backgroundColor: "#339FFF",
+    padding: 20,
+    borderRadius: 20,
+  },
+  statusText: {
+    fontSize: 16,
+    color: "#FFF",
+    fontWeight: "bold",
+  },
+  calls: {
+    marginTop: 40,
+    marginBottom: 20,
+    alignSelf: "center",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });

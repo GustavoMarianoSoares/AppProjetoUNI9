@@ -154,12 +154,26 @@ export function Home({ navigation }) {
 
       <ButtonAction title="CRIAR CHAMADO" onPress={openCreateOrder} />
 
-      <TouchableOpacity onPress={() => setStatus("open")}>
-        <Text>Aberto</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => setStatus("closed")}>
-        <Text>Fechado</Text>
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <TouchableOpacity
+          onPress={() => setStatus("open")}
+          style={styles.statusOpacity}
+        >
+          <Text style={styles.statusText}>Aberto</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setStatus("closed")}
+          style={styles.statusOpacity}
+        >
+          <Text style={styles.statusText}>Fechado</Text>
+        </TouchableOpacity>
+      </View>
+
+      {status == "open" ? (
+        <Text style={styles.calls}>Chamados abertos</Text>
+      ) : (
+        <Text style={styles.calls}>Chamados fechados</Text>
+      )}
 
       {renderStatus}
     </ScrollView>
