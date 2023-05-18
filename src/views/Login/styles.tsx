@@ -33,4 +33,8 @@ export default StyleSheet.create({
     padding: 5,
     marginBottom: 10,
   },
+  whoWeAre: {
+    marginTop: 20,
+    alignItems: "center",
+  },
 });

@@ -32,6 +32,10 @@ export function Login({ navigation }) {
     navigation.navigate("ForgotPassword");
   }
 
+  function openScreenWe() {
+    navigation.navigate("We");
+  }
+
   function signInValidationAuth(error) {
     if (error === "auth/wrong-password") {
       Alert.alert(
@@ -176,6 +180,11 @@ export function Login({ navigation }) {
               Ainda não possui uma conta?{" "}
               <Text style={{ color: "#5D9ED4" }}>Registre-se</Text>
             </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          style={styles.whoWeAre}
+          onPress={openScreenWe}>
+            <Text>Quem somos</Text>
           </TouchableOpacity>
         </ScrollView>
       </TouchableWithoutFeedback>

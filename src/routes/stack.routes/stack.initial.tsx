@@ -5,6 +5,7 @@ const { Screen, Navigator } = createNativeStackNavigator();
 import { Login } from "../../views/Login";
 import { Register } from "../../views/Register";
 import { ForgotPassword } from "../../views/ForgotPassword";
+import { We } from "../../views/We";
 
 export function StackInitial() {
   return (
@@ -27,6 +28,12 @@ export function StackInitial() {
         name="ForgotPassword"
         component={ForgotPassword}
         options={{ title: "ESQUECI A SENHA" }}
+      />
+
+      <Screen
+        name="We"
+        component={We}
+        options={{ title: "QUEM SOMOS" }}
       />
     </Navigator>
   );
